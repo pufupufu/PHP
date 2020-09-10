@@ -1,7 +1,7 @@
 <?php
 //PROGRAMA encriptar
 //Este programa encripta un numero de 4 digitos
-//int num, encriptado, encriptadoAux, aux, aux2, es10, menorMil
+//int num, encriptado, encriptadoAux, aux, aux2, es10, menorMil, menorCien, menorDiez, cero
 $encriptadoAux = 0;
 $encriptado = 0;
 
@@ -44,5 +44,11 @@ $encriptado += $aux2;
 
 $menorMil = $encriptado < 1000; //Verifico si al numero le quedo un 0 adelante, por lo que seria menor a 1.000
 $menorMil ? $encriptado = "0".$encriptado : $encriptado = $encriptado; //Si es menor le concatena un 0 al principio
+
+$menorCien = $encriptado < 100;
+$menorCien ? $encriptado = "0".$encriptado : $encriptado = $encriptado;
+
+$menorDiez = $encriptado < 10;
+$menorDiez ? $encriptado = "0".$encriptado : $encriptado = $encriptado;
 
 echo $num. " encriptado es: ". $encriptado;
