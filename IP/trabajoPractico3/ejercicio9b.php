@@ -12,4 +12,4 @@ $segundosAux = $segundos % 60;
 $horas = $minutos / 60;
 $minutos = $minutos % 60;
 
-echo $segundos." segundos son: " .$horas. " horas ". $minutos. " minutos " . $segundosAux. " segundos";
+echo $segundos." segundos son: " .(int)$horas. " horas ". (int)$minutos. " minutos " . $segundosAux. " segundos";
