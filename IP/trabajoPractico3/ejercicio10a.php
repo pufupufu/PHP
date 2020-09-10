@@ -8,36 +8,37 @@ $encriptado = 0;
 echo "Ingrese un numero: ";
 $num = trim(fgets(STDIN));
 
-//ULTIMO DIGITO
+//CUARTO DIGITO
 $aux = (($num % 10) % 10) + 7;
 $es10 = $aux >= 10; //Verifico si el auxiliar es mayor o igual a 10 despues de la suma
 $es10 ? $aux = $aux % 10 : $aux = $aux; //Si es mayor saca el resto de dividir por 10, sino lo deja
 $encriptadoAux += $aux;
 
-//SEGUNDO DIGITO
+//TERCER DIGITO
 $aux = ((int)(($num % 100) / 10) % 10) + 7;
 $es10 = $aux >= 10;
 $es10 ? $aux = $aux % 10 : $aux = $aux;
 $encriptadoAux += ((int)$aux * 10);
 
-//TERCER DIGITO
+//SEGUNDO DIGITO
 $aux = ((int)(($num % 1000) / 100) % 10) + 7;
 $es10 = $aux >= 10;
 $es10 ? $aux = $aux % 10 : $aux = $aux;
 $encriptadoAux += ((int)$aux * 100);
 
-//TERCER DIGITO
+//PRIMER DIGITO
 $aux = ((int)($num / 1000) % 10) + 7;
 $es10 = $aux >= 10; 
 $es10 ? $aux = $aux % 10 : $aux = $aux;
 $encriptadoAux += (int)($aux * 1000);
 
-$aux = (int)($encriptadoAux / 1000);
-$aux2 = (int)(($encriptadoAux % 100) / 10);
+//REEMPLAZO DE DIGITOS
+$aux = (int)($encriptadoAux / 1000); //PRIMER DIGITO
+$aux2 = (int)(($encriptadoAux % 100) / 10); //TERCER DIGITO
 $encriptado += ($aux * 10);
 $encriptado += ($aux2 * 1000);
-$aux = $encriptadoAux % 10;
-$aux2 = (int)(($encriptadoAux % 1000) / 100);
+$aux = $encriptadoAux % 10; //CUARTO DIGITO
+$aux2 = (int)(($encriptadoAux % 1000) / 100); //SEGUNDO DIGITO
 $encriptado += ($aux * 100);
 $encriptado += $aux2;
 
