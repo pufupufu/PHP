@@ -11,25 +11,25 @@ $num = trim(fgets(STDIN));
 //CUARTO DIGITO
 $aux = (($num % 10) % 10) + 7;
 $es10 = $aux >= 10; //Verifico si el auxiliar es mayor o igual a 10 despues de la suma
-$es10 ? $aux = $aux % 10 : $aux = $aux; //Si es mayor saca el resto de dividir por 10, sino lo deja
+$es10 ? $aux = $aux % 10 : $aux; //Si es mayor saca el resto de dividir por 10, sino lo deja
 $encriptadoAux += $aux;
 
 //TERCER DIGITO
 $aux = ((int)(($num % 100) / 10) % 10) + 7;
 $es10 = $aux >= 10;
-$es10 ? $aux = $aux % 10 : $aux = $aux;
+$es10 ? $aux = $aux % 10 : $aux;
 $encriptadoAux += ((int)$aux * 10);
 
 //SEGUNDO DIGITO
 $aux = ((int)(($num % 1000) / 100) % 10) + 7;
 $es10 = $aux >= 10;
-$es10 ? $aux = $aux % 10 : $aux = $aux;
+$es10 ? $aux = $aux % 10 : $aux;
 $encriptadoAux += ((int)$aux * 100);
 
 //PRIMER DIGITO
 $aux = ((int)($num / 1000) % 10) + 7;
 $es10 = $aux >= 10; 
-$es10 ? $aux = $aux % 10 : $aux = $aux;
+$es10 ? $aux = $aux % 10 : $aux;
 $encriptadoAux += (int)($aux * 1000);
 
 //REEMPLAZO DE DIGITOS
@@ -43,12 +43,12 @@ $encriptado += ($aux * 100);
 $encriptado += $aux2;
 
 $menorMil = $encriptado < 1000; //Verifico si al numero le quedo un 0 adelante, por lo que seria menor a 1.000
-$menorMil ? $encriptado = "0".$encriptado : $encriptado = $encriptado; //Si es menor le concatena un 0 al principio
+$menorMil ? $encriptado = "0" . $encriptado : $encriptado; //Si es menor le concatena un 0 al principio
 
 $menorCien = $encriptado < 100;
-$menorCien ? $encriptado = "0".$encriptado : $encriptado = $encriptado;
+$menorCien ? $encriptado = "0" . $encriptado : $encriptado;
 
 $menorDiez = $encriptado < 10;
-$menorDiez ? $encriptado = "0".$encriptado : $encriptado = $encriptado;
+$menorDiez ? $encriptado = "0" . $encriptado : $encriptado;
 
-echo $num. " encriptado es: ". $encriptado;
+echo $num. " encriptado es: " . $encriptado;
