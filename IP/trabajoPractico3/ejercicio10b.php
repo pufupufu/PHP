@@ -2,7 +2,7 @@
 //PROGRAMA desencriptar
 /*Este algoritmo recibe un numero de cuatro digitos encriptado
 en el ejercicio 10) a) y lo desencripta*/
-//int aux, desencriptado, desencriptadoAux, aux1, aux2, num
+//int aux, desencriptado, desencriptadoAux, aux2, num
 //boolean esMenorCero, esCero
 echo "Ingrese un numero para desencriptar: ";
 $num = trim(fgets(STDIN));
