@@ -1,7 +1,7 @@
 <?php
 //PROGRAMA encriptar
 //Este programa encripta un numero de 4 digitos
-//int num, encriptado, encriptadoAux, aux, aux2, es10, menorMil, menorCien, menorDiez, cero
+//int num, encriptado, encriptadoAux, aux, aux2, es10, menorMil, menorCien, menorDiez
 $encriptadoAux = 0;
 $encriptado = 0;
 
@@ -9,32 +9,24 @@ echo "Ingrese un numero: ";
 $num = trim(fgets(STDIN));
 
 //CUARTO DIGITO
-$aux = (($num % 10) % 10) + 7;
-$es10 = $aux >= 10; //Verifico si el auxiliar es mayor o igual a 10 despues de la suma
-$es10 ? $aux = $aux % 10 : $aux; //Si es mayor saca el resto de dividir por 10, sino lo deja
+$aux = (($num % 10) + 7) % 10;
 $encriptadoAux += $aux;
 
 //TERCER DIGITO
-$aux = ((int)(($num % 100) / 10) % 10) + 7;
-$es10 = $aux >= 10;
-$es10 ? $aux = $aux % 10 : $aux;
+$aux = ((int)(($num % 100) / 10) + 7) % 10;
 $encriptadoAux += ((int)$aux * 10);
 
 //SEGUNDO DIGITO
-$aux = ((int)(($num % 1000) / 100) % 10) + 7;
-$es10 = $aux >= 10;
-$es10 ? $aux = $aux % 10 : $aux;
+$aux = ((int)(($num % 1000) / 100) + 7) % 10;
 $encriptadoAux += ((int)$aux * 100);
 
 //PRIMER DIGITO
-$aux = ((int)($num / 1000) % 10) + 7;
-$es10 = $aux >= 10; 
-$es10 ? $aux = $aux % 10 : $aux;
+$aux = ((int)($num / 1000) + 7) % 10;
 $encriptadoAux += (int)($aux * 1000);
 
 //REEMPLAZO DE DIGITOS
 $aux = (int)($encriptadoAux / 1000); //PRIMER DIGITO
-$aux2 = (int)(($encriptadoAux % 100) / 10); //TERCER DIGITO
+$aux2 = (int)(($encriptadoAux % 100) / 10); //TERCER DIGITO 8901
 $encriptado += ($aux * 10);
 $encriptado += ($aux2 * 1000);
 $aux = $encriptadoAux % 10; //CUARTO DIGITO
