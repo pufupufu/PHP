@@ -4,9 +4,6 @@
  * NOMBRE Y APELLIDOS - LEGAJOS
  ******************************************/
 
-
-
-
 /**
  * genera un arreglo de palabras para jugar
  * @return array
