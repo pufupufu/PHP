@@ -72,6 +72,6 @@ class Teatro
 
     public function __toString()
     {
-        return "Teatro: " . $this->nombre . "\n" . "Direccion: " . $this->direccion . "\n";
+        return "Teatro: " . $this->getNombre() . "\n" . "Direccion: " . $this->getDireccion() . "\n";
     }
 }
