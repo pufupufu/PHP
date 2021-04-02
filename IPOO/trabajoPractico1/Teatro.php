@@ -70,6 +70,18 @@ class Teatro
         return $exito;
     }
 
+    public function cambiarPrecio($pos, $nuevoPrecio)
+    {
+        //boolean $exito
+        if ($pos < 4 && $pos >= 0) {
+            $this->funciones[$pos]["precio"] = $nuevoPrecio;
+            $exito = true;
+        } else {
+            $exito = false;
+        }
+        return $exito;
+    }
+
     public function __toString()
     {
         return "Teatro: " . $this->getNombre() . "\n" . "Direccion: " . $this->getDireccion() . "\n";
