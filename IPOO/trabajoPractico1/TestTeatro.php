@@ -2,18 +2,19 @@
 include "Teatro.php";
 main();
 
-function main() {
-    //String $ok, $error
+function main()
+{
+    //String $true, $false
     //Teatro $teatro
-    $error = "ERROR";
-    $ok = "OK!";
+    $false = "false";
+    $true = "true";
     $teatro = new Teatro("Primer Nombre Teatro", "Primera Direccion");
 
     //CARGA DE LAS FUNCIONES
-    echo "Cargo la primera funcion:\t\t\t" . (($teatro->cambiarFuncion(0, "Romeo y Julieta", 150)) ? $ok : $error). "\n";
-    echo "Cargo la segunda funcion:\t\t\t" . (($teatro->cambiarFuncion(1, "Hamlet", 180)) ? $ok : $error) . "\n";
-    echo "Cargo la tercera funcion:\t\t\t" . (($teatro->cambiarFuncion(2, "Divina Comedia", 172)) ? $ok : $error) . "\n";
-    echo "Cargo la cuarta funcion:\t\t\t" . (($teatro->cambiarFuncion(3, "El Fantasma de la Opera", 147)) ? $ok : $error) . "\n";
+    echo "Cargo la primera funcion. Espera true:\t\t\t" . (($teatro->cambiarFuncion(0, "Romeo y Julieta", 150)) ? $true : $false) . "\n";
+    echo "Cargo la segunda funcion. Espera true:\t\t\t" . (($teatro->cambiarFuncion(1, "Hamlet", 180)) ? $true : $false) . "\n";
+    echo "Cargo la tercera funcion. Espera true:\t\t\t" . (($teatro->cambiarFuncion(2, "Divina Comedia", 172)) ? $true : $false) . "\n";
+    echo "Cargo la cuarta funcion. Espera true:\t\t\t" . (($teatro->cambiarFuncion(3, "El Fantasma de la Opera", 147)) ? $true : $false) . "\n";
     echo $teatro;
 
     //MUESTRO EL ARREGLO DE FUNCIONES CARGADO
@@ -25,14 +26,20 @@ function main() {
     $teatro->setDireccion("Nueva Direccion");
     echo "Teatro con los cambios realizados: \n" . $teatro . "\n";
 
-    echo "Cargo una quinta funcion:\t\t\t\t\t" . ((false == $teatro->cambiarFuncion(4, "La Celestina", 231)) ? $ok : $error) . "\n";
+    echo "Cargo una quinta funcion. Espera false:\t\t\t\t\t" . (($teatro->cambiarFuncion(4, "La Celestina", 231)) ? $true : $false) . "\n";
 
     //TEST METODO existeFuncion()
-    echo "Busco una funcion que no esta cargada:\t\t\t\t" . ((-1 == $teatro->existeFuncion("La Celestina")) ? $ok : $error) . "\n";
+    echo "Busco una funcion que no esta cargada. Espera false:\t\t\t" . ((-1 != $teatro->existeFuncion("La Celestina")) ? $true : $false) . "\n";
     $pos = $teatro->existeFuncion("Hamlet");
-    echo "Busco una funcion cargada:\t\t\t\t\t" . ((-1 != $pos) ? $ok : $error) . "\n";
+    echo "Busco una funcion cargada. Espera true:\t\t\t\t\t" . ((-1 != $pos) ? $true : $false) . "\n";
 
-    echo "Cambio la funcion buscada anteriormente:\t\t\t" . (($teatro->cambiarFuncion($pos, "La Celestina", 156)) ? $ok : $error) . "\n";
+    echo "Cambio la funcion buscada anteriormente. Espera true:\t\t\t" . (($teatro->cambiarFuncion($pos, "La Celestina", 156)) ? $true : $false) . "\n";
+
+    print_r($teatro->getFunciones());
+
+    //TEST METODO cambiarPrecio()
+    echo "Cambio el precio de una funcion que no está cargada. Espera false:\t\t" . (($teatro->cambiarPrecio(4, 125)) ? $true : $false) . "\n";
+    echo "Cambio el precio de una function cargada. Espera true:\t\t\t\t" . (($teatro->cambiarPrecio(0, 213)) ? $true : $false) . "\n";
 
     print_r($teatro->getFunciones());
 }
