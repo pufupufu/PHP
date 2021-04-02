@@ -10,10 +10,10 @@ class Teatro
         $this->nombre = $nom;
         $this->direccion = $dir;
         $this->funciones = [
-            0 => ["nombre" => "", "precio" => 0],
-            1 => ["nombre" => "", "precio" => 0],
-            2 => ["nombre" => "", "precio" => 0],
-            3 => ["nombre" => "", "precio" => 0],
+            ["nombre" => "", "precio" => 0],
+            ["nombre" => "", "precio" => 0],
+            ["nombre" => "", "precio" => 0],
+            ["nombre" => "", "precio" => 0],
         ];
     }
 
@@ -84,6 +84,24 @@ class Teatro
 
     public function __toString()
     {
-        return "Teatro: " . $this->getNombre() . "\n" . "Direccion: " . $this->getDireccion() . "\n";
+        return "Teatro: " . $this->getNombre() . "\n" . "Direccion: " . $this->getDireccion() . "\n\n" . $this->arrayToString() . "\n";
+    }
+
+    private function arrayToString()
+    {
+        //String $retorno, $funcion
+        //Array $arregloFunciones
+        //float $precio
+        //int $i
+        $i = 1;
+        $retorno = "";
+        $arregloFunciones = $this->getFunciones();
+        for ($i = 0; $i < count($arregloFunciones); $i++) {
+            $funcion = $arregloFunciones[$i]["nombre"];
+            $precio = $arregloFunciones[$i]["precio"];
+            $retorno .= "Funcion " . ($i + 1) . ":\nObra: $funcion\nPrecio: $precio\n";
+            $retorno .= "-------------------------------------------------\n";
+        }
+        return $retorno;
     }
 }
