@@ -93,14 +93,15 @@ class Teatro
         //Array $arregloFunciones
         //float $precio
         //int $i
-        $i = 1;
+        $j = 1;
         $retorno = "";
         $arregloFunciones = $this->getFunciones();
-        for ($i = 0; $i < count($arregloFunciones); $i++) {
-            $funcion = $arregloFunciones[$i]["nombre"];
-            $precio = $arregloFunciones[$i]["precio"];
-            $retorno .= "Funcion " . ($i + 1) . ":\nObra: $funcion\nPrecio: $precio\n";
+        foreach ($arregloFunciones as $i) {
+            $funcion = $i["nombre"];
+            $precio = $i["precio"];
+            $retorno .= "Funcion " . ($j) . ":\nObra: $funcion\nPrecio: $precio\n";
             $retorno .= "-------------------------------------------------\n";
+            $j++;
         }
         return $retorno;
     }

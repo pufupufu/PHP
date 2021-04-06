@@ -38,7 +38,7 @@ function main()
 
     //TEST METODO cambiarPrecio()
     echo "Cambio el precio de una funcion que no está cargada. Espera false:\t" . (($teatro->cambiarPrecio(4, 125)) ? $true : $false) . "\n";
-    echo "Cambio el precio de una function cargada. Espera true:\t\t\t" . (($teatro->cambiarPrecio(0, 213)) ? $true : $false) . "\n\n";
+    echo "Cambio el precio de una funcion cargada. Espera true:\t\t\t" . (($teatro->cambiarPrecio(0, 213)) ? $true : $false) . "\n\n";
 
     echo $teatro;
 }
