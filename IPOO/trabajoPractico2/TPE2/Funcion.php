@@ -61,7 +61,7 @@ class Funcion
 
     public function __toString()
     {
-        return "Nombre: " . $this->getNombre() . "\nPrecio: $" . $this->getPrecio() . "\nHora inicio: " . $this->getHoraInicio() . "\nDuracion: " . $this->getDuracion();
+        return "\tNombre: " . $this->getNombre() . "\n\tPrecio: $" . $this->getPrecio() . "\n\tHora inicio: " . $this->getHoraInicio() . "\n\tDuracion: " . $this->getDuracion() . " minutos";
     }
 
     public function horaAMinutos()

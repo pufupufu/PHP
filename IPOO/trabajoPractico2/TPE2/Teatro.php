@@ -59,7 +59,7 @@ class Teatro
         $arreglo = $this->getFunciones();
         foreach ($arreglo as $i) {
             $retorno .= $i . "\n";
-            $retorno .= "---------------------------------------------------\n";
+            $retorno .= "----------------------------------------------------------------------\n";
         }
         return $retorno;
     }
