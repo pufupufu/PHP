@@ -38,14 +38,13 @@ function menu()
 //Lee una opcion y realiza la accion correspondiente
 function opciones($teatro)
 {
+    $teatro->ordenarFunciones();
     $longitud = count($teatro->getFunciones());
     $retorno = true;
-    $cargado = false;
     $opcion = trim(fgets(STDIN));
     switch ($opcion) {
         case 1:
             cargar($teatro);
-            $cargado = true;
             break;
         case 2:
             if ($longitud > 0) {
@@ -215,7 +214,7 @@ function cambiarHorarioFuncion($teatro)
             echo "Ingrese el nuevo horario por el que desea cambiarlo (hs:min): ";
             $nuevoHorario = trim(fgets(STDIN));
             $f->setHoraInicio($nuevoHorario);
-            $seSolapa = $arregloFunciones->seSolapan($f);
+            $seSolapa = $teatro->seSolapan($f);
         } while ($seSolapa);
         $arregloFunciones[$posFuncion] = $f;
         $teatro->setFunciones($arregloFunciones);
@@ -238,7 +237,7 @@ function cambiarDuracionFuncion($teatro)
             echo "Ingrese la nueva duracion por la que desea cambiarla (en minutos): ";
             $nuevaDuracion = trim(fgets(STDIN));
             $f->setDuracion($nuevaDuracion);
-            $seSolapa = $arregloFunciones->seSolapan($f);
+            $seSolapa = $teatro->seSolapan($f);
         } while ($seSolapa);
         $arregloFunciones[$posFuncion] = $f;
         $teatro->setFunciones($arregloFunciones);

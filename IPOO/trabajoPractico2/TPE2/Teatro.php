@@ -70,14 +70,18 @@ class Teatro
         $i = 0;
 
         while (!$seSolapa && $i < count($this->arregloFunciones)) {
-            $duracion = $this->arregloFunciones[$i]->getDuracion();
-            $horaFuncion = $this->arregloFunciones[$i]->horaAMinutos();
-            $total = $duracion + $horaFuncion;
-            if ($f1->horaAMinutos() > $total || $horaFuncion > ($f1->horaAMinutos() + $f1->getDuracion())) {
-                $seSolapa = false;
-                $i++;
+            if ($f1->getNombre() != $this->arregloFunciones[$i]->getNombre()) {
+                $duracion = $this->arregloFunciones[$i]->getDuracion();
+                $horaFuncion = $this->arregloFunciones[$i]->horaAMinutos();
+                $total = $duracion + $horaFuncion;
+                if ($f1->horaAMinutos() > $total || $horaFuncion > ($f1->horaAMinutos() + $f1->getDuracion())) {
+                    $seSolapa = false;
+                    $i++;
+                } else {
+                    $seSolapa = true;
+                }
             } else {
-                $seSolapa = true;
+                $i++;
             }
         }
         return $seSolapa;
@@ -96,5 +100,30 @@ class Teatro
             }
         }
         return $pos;
+    }
+
+    //ORDENAMIENTO DE LAS FUNCIONES
+    public function ordenarFunciones()
+    {
+        //Ordeno las funciones para que se muestren en el orden en que empiezan
+        //int $largo, $i, $j
+        //Funcion $aux
+        //boolean $sinCambio
+        $sinCambio = false;
+        $i = 0;
+        $largo = count($this->arregloFunciones);
+
+        while($i < $largo && !$sinCambio) {
+            $sinCambio = true;
+            for ($j=0; $j < $largo - $i - 1; $j++) { 
+                if($this->arregloFunciones[$j]->horaAMinutos() > $this->arregloFunciones[$j + 1]->horaAMinutos()) {
+                    $aux = $this->arregloFunciones[$j];
+                    $this->arregloFunciones[$j] = $this->arregloFunciones[$j + 1];
+                    $this->arregloFunciones[$j + 1] = $aux;
+                    $sinCambio = false;
+                }
+            }
+            $i++;
+        }
     }
 }
