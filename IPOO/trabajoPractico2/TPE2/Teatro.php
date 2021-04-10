@@ -113,10 +113,10 @@ class Teatro
         $i = 0;
         $largo = count($this->arregloFunciones);
 
-        while($i < $largo && !$sinCambio) {
+        while ($i < $largo && !$sinCambio) {
             $sinCambio = true;
-            for ($j=0; $j < $largo - $i - 1; $j++) { 
-                if($this->arregloFunciones[$j]->horaAMinutos() > $this->arregloFunciones[$j + 1]->horaAMinutos()) {
+            for ($j = 0; $j < $largo - $i - 1; $j++) {
+                if ($this->arregloFunciones[$j]->horaAMinutos() > $this->arregloFunciones[$j + 1]->horaAMinutos()) {
                     $aux = $this->arregloFunciones[$j];
                     $this->arregloFunciones[$j] = $this->arregloFunciones[$j + 1];
                     $this->arregloFunciones[$j + 1] = $aux;
