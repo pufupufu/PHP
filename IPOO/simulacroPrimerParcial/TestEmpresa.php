@@ -8,11 +8,13 @@ main();
 
 function main() {
     //INCISO 1
-    $cliente1 = new Cliente("Jose", "Perez", "DNI", 23568419, false);
-    $cliente2 = new Cliente("Juan", "Hernandez", "DNI", 21581720, false);
+    echo "EJECUTANDO INCISO 1...\n";
+    $cliente1 = new Cliente("Jose", "Perez", "DNI", 23568419, true);
+    $cliente2 = new Cliente("Juan", "Hernandez", "DNI", 21586720, false);
     $colCliente = [$cliente1, $cliente2];
 
     //INCISO 2
+    echo "EJECUTANDO INCISO 2...\n";
     $producto1 = new Producto(11, 50000, 2018, "Cemento loma Negra", 70, true);
     $producto2 = new Producto(12, 10000, 2019, "Hierro del 12", 60, true);
     $producto3 = new Producto(13, 10000, 2020, "Cal Santa Clara", 50, false);
@@ -21,32 +23,39 @@ function main() {
     $colVenta = [];
 
     //INCISO 3
+    echo "EJECUTANDO INCISO 3...\n";
     $empresa = new Empresa("Cosmos", "Av Argentina 123", $colCliente, $colProducto, $colVenta);
 
     //INCISO 4
+    echo "EJECUTANDO INCISO 4...\n";
     $colCodigosProductos = [11, 12, 13];
     $empresa->registrarVenta($colCodigosProductos, $cliente2);
     echo $empresa->colVentasAString();
 
     //INCISO 5
-    $colCodigosProductos = [0];
+    echo "EJECUTANDO INCISO 5...\n";
+    $colCodigosProductos = [11];
     $empresa->registrarVenta($colCodigosProductos, $cliente2);
     echo $empresa->colVentasAString();
 
     //INCISO 6
+    echo "EJECUTANDO INCISO 6...\n";
     $colCodigosProductos = [2];
     $empresa->registrarVenta($colCodigosProductos, $cliente2);
     echo $empresa->colVentasAString();
 
     //INCISO 7
+    echo "EJECUTANDO INCISO 7...\n";
     $ventas = $empresa->retornarVentasPorCliente("DNI", 23568419);
     imprimirArreglo($ventas);
 
     //INCISO 8
-    $ventas = $empresa->retornarVentasPorCliente("DNI", 21581720);
+    echo "EJECUTANDO INCISO 8...\n";
+    $ventas = $empresa->retornarVentasPorCliente("DNI", 21586720);
     imprimirArreglo($ventas);
 
     //INCISO 9
+    echo "EJECUTANDO INCISO 9...\n";
     echo $empresa;
 }
 

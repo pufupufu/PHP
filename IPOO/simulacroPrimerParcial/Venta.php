@@ -92,9 +92,13 @@ class Venta
 
     public function incorporarProducto($nuevoProducto)
     {
+        $arregloProductos = $this->getColProductos();
+        $precio = $this->getPrecioFinal();
         if ($nuevoProducto->getActivo()) {
-            $this->colProductos[count($this->colProductos)] = $nuevoProducto;
-            $this->precioFinal += $nuevoProducto->darPrecioVenta();
+            $arregloProductos[count($arregloProductos)] = $nuevoProducto;
+            $this->setArregloProductos($arregloProductos);
+            $precio += $nuevoProducto->darPrecioVenta();
+            $this->setPrecioFinal($precio);
         }
     }
 }

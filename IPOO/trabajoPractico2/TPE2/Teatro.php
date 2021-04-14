@@ -68,11 +68,12 @@ class Teatro
     {
         $seSolapa = false;
         $i = 0;
+        $colFunciones = $this->getFunciones();
 
-        while (!$seSolapa && $i < count($this->arregloFunciones)) {
-            if ($f1->getNombre() != $this->arregloFunciones[$i]->getNombre()) {
-                $duracion = $this->arregloFunciones[$i]->getDuracion();
-                $horaFuncion = $this->arregloFunciones[$i]->horaAMinutos();
+        while (!$seSolapa && $i < count($colFunciones)) {
+            if ($f1->getNombre() != $colFunciones[$i]->getNombre()) {
+                $duracion = $colFunciones[$i]->getDuracion();
+                $horaFuncion = $colFunciones[$i]->horaAMinutos();
                 $total = $duracion + $horaFuncion;
                 if ($f1->horaAMinutos() > $total || $horaFuncion > ($f1->horaAMinutos() + $f1->getDuracion())) {
                     $seSolapa = false;
@@ -92,8 +93,9 @@ class Teatro
         //int $pos, $i
         $pos = -1;
         $i = 0;
-        while ($i < count($this->arregloFunciones) && $pos == -1) {
-            if ($this->arregloFunciones[$i]->getNombre() == $funcionBuscada) {
+        $colFunciones = $this->getFunciones();
+        while ($i < count($colFunciones) && $pos == -1) {
+            if ($colFunciones[$i]->getNombre() == $funcionBuscada) {
                 $pos = $i;
             } else {
                 $i++;
@@ -112,18 +114,20 @@ class Teatro
         $sinCambio = false;
         $i = 0;
         $largo = count($this->arregloFunciones);
+        $colFunciones = $this->getFunciones();
 
         while ($i < $largo && !$sinCambio) {
             $sinCambio = true;
             for ($j = 0; $j < $largo - $i - 1; $j++) {
-                if ($this->arregloFunciones[$j]->horaAMinutos() > $this->arregloFunciones[$j + 1]->horaAMinutos()) {
-                    $aux = $this->arregloFunciones[$j];
-                    $this->arregloFunciones[$j] = $this->arregloFunciones[$j + 1];
-                    $this->arregloFunciones[$j + 1] = $aux;
+                if ($colFunciones[$j]->horaAMinutos() > $colFunciones[$j + 1]->horaAMinutos()) {
+                    $aux = $colFunciones[$j];
+                    $colFunciones[$j] = $colFunciones[$j + 1];
+                    $colFunciones[$j + 1] = $aux;
                     $sinCambio = false;
                 }
             }
             $i++;
         }
+        $this->setFunciones($colFunciones);
     }
 }

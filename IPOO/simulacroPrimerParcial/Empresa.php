@@ -125,14 +125,13 @@ class Empresa
         //boolean $encontrado
         $i = 0;
         $encontrado = false;
-        while ($i < count($this->colProductos) && !$encontrado) {
+        $retorno = null;
+        while ($i < count($this->getColProductos()) && !$encontrado) {
             if ($this->colProductos[$i]->getCodigo() == $codigoProducto) {
                 $retorno = $this->colProductos[$i];
                 $encontrado = true;
-            } else {
-                $retorno = null;
-                $i++;
             }
+            $i++;
         }
         return $retorno;
     }
@@ -142,45 +141,40 @@ class Empresa
         //Venta $nuevaVenta
         //Producto $nuevoProducto
         //int $codigoProducto
-        //boolean $exito
+        //Array Venta $colVentas
 
+        $precioFinal = 0;
+        $colVentas = $this->getColVentas();
         if (!$cliente->getDadoDeBaja()) {
+            $numero = count($this->colVentas);
+            $fecha = date('Y');
+            $nuevaVenta = new Venta($numero, $fecha, $cliente);
             for ($i = 0; $i < count($colCodigosProductos); $i++) {
                 $codigoProducto = $colCodigosProductos[$i];
                 $nuevoProducto = $this->retornarProducto($codigoProducto);
                 if ($nuevoProducto != null) {
-                    if ($nuevoProducto->getActivo()) {
-                        $exito = true;
-                        $numero = count($this->colVentas);
-                        $fecha = date('Y');
-                        $nuevaVenta = new Venta($numero, $fecha, $cliente);
-                        $nuevaVenta->incorporarProducto($nuevoProducto);
-                    }
-                    $this->colVentas[count($this->colVentas)] = $nuevaVenta;
-                } else {
-                    $exito = false;
+                    $nuevaVenta->incorporarProducto($nuevoProducto);
                 }
             }
-        } else {
-            $exito = false;
+            if (count($nuevaVenta->getColProductos()) != 0) {
+                $colVentas[count($colVentas)] = $nuevaVenta;
+                $this->setColVentas($colVentas);
+                $precioFinal = $nuevaVenta->getPrecioFinal();
+            }
         }
-
-        return $exito;
+        return $precioFinal;
     }
 
     public function retornarVentasPorCliente($tipo, $numDoc)
     {
         //Array Venta $ventasRealizadas
-        //int $i
-        //Cliente $c
+        //Venta $objVenta
+        //Cliente $cliente
         $ventasRealizadas = [];
-        for ($i = 0; $i < count($this->colVentas); $i++) {
-            $v = $this->colVentas[$i];
-            if ($v != null) {
-                $c = $v->getCliente();
-                if ($c->getTipoDoc() == $tipo && $c->getNumeroDoc() == $numDoc) {
-                    $ventasRealizadas[count($ventasRealizadas)] = $v;
-                }
+        foreach($this->getColVentas() as $objVenta) {
+            $cliente = $objVenta->getCliente();
+            if ($cliente->getTipoDoc() == $tipo && $cliente->getNumeroDoc() == $numDoc) {
+                array_push($ventasRealizadas, $objVenta); // Igual a $ventasRealizadas[count($ventasRealizadas)] = $objVenta;
             }
         }
         return $ventasRealizadas;

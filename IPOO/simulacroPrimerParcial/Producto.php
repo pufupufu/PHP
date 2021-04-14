@@ -97,9 +97,9 @@ class Producto
         //int $anio
         if($this->getActivo()) {
             $costo = $this->getCosto();
-            $anio = 2021 - $this->getAnioFabricacion();
+            $anio = date('Y') - $this->getAnioFabricacion();
             $iA = $this->getIncAnual();
-            $retorno = $costo + ($costo * ($anio * ($iA) / 100));
+            $retorno = $costo + ($costo * $anio * ($iA / 100));
         } else {
             $retorno = -1;
         }
