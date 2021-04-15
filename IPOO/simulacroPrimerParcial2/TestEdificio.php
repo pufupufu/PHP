@@ -1,15 +1,15 @@
 <?php
-include 'Inquilino.php';
+include 'Persona.php';
 include 'Inmueble.php';
 include 'Edificio.php';
 
-$inquilino1 = new Inquilino("DNI", 12333456, "Pepe", "Suarez", 4456722);
-$inquilino2 = new Inquilino("DNI", 12333422, "Pedro", "Suarez", 446678);
-$administrador = new Inquilino("DNI", 27432561, "Carlos", "Martinez", 154321233);
+$persona1 = new Persona("DNI", 12333456, "Pepe", "Suarez", 4456722);
+$persona2 = new Persona("DNI", 12333422, "Pedro", "Suarez", 446678);
+$administrador = new Persona("DNI", 27432561, "Carlos", "Martinez", 154321233);
 
-$inmueble1 = new Inmueble(11, 1, "local comercial", 50000, $inquilino1);
+$inmueble1 = new Inmueble(11, 1, "local comercial", 50000, $persona1);
 $inmueble2 = new Inmueble(12, 1, "local comercial", 50000, null);
-$inmueble3 = new Inmueble(13, 2, "departamento", 35000, $inquilino2);
+$inmueble3 = new Inmueble(13, 2, "departamento", 35000, $persona2);
 $inmueble4 = new Inmueble(14, 2, "departamento", 35000, null);
 $inmueble5 = new Inmueble(15, 3, "departamento", 35000, null);
 
@@ -19,26 +19,26 @@ $edificio = new Edificio("Juan B. Justo 3456", $coleccionInmuebles, $administrad
 $edificio->ordenarPorPiso();
 
 //INCISO 4
-echo "EJECUTANDO INCISO 4...";
+echo "EJECUTANDO INCISO 4...\n";
 $inmueblesDisponibles = $edificio->darInmueblesDisponiblesParaAlquiler("local comercial", 4000);
 mostrarColeccion($inmueblesDisponibles);
 
 //INCISO 5
-echo "EJECUTANDO INCISO 5...";
-$inquilino3 = new Inquilino("DNI", 28765436, "Mariela", "Suarez", 25543562);
-($edificio->registrarAlquilerInmueble($inmueble5, $Inquilino3)) ? "OK!" : "ERROR";
+echo "EJECUTANDO INCISO 5...\n";
+$persona3 = new Persona("DNI", 28765436, "Mariela", "Suarez", 25543562);
+echo ($edificio->registrarAlquilerInmueble($inmueble5, $persona3)) ? "OK!" : "ERROR" . "\n\n";
 
 //INCISO 6
-echo "EJECUTANDO INCISO 6...";
-($edificio->registrarAlquilerInmueble($inmueble4, $Inquilino3)) ? "OK!" : "ERROR";
+echo "EJECUTANDO INCISO 6...\n";
+echo ($edificio->registrarAlquilerInmueble($inmueble4, $persona3)) ? "OK!" : "ERROR" . "\n\n";
 
 //INCISO 7
-echo "EJECUTANDO INCISO 7...";
-echo $edificio->calcularCostoEdificio();
+echo "EJECUTANDO INCISO 7...\n";
+echo $edificio->calcularCostoEdificio() . "\n\n";
 
 //INCISO 8
-echo "EJECUTANDO INCISO 8...";
-echo $edificio;
+echo "EJECUTANDO INCISO 8...\n";
+echo $edificio . "\n";
 
 function mostrarColeccion($coleccion)
 {

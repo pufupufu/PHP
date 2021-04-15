@@ -1,5 +1,4 @@
 <?php
-include 'Inquilino.php';
 class Inmueble
 {
     //VARIABLES

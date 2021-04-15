@@ -1,6 +1,4 @@
 <?php
-include 'Inmueble.php';
-include 'Inquilino.php';
 class Edificio
 {
     //VARIABLES
@@ -52,7 +50,7 @@ class Edificio
     {
         return "Direccion: " . $this->getDireccion() . "\n" .
         "----------INMUEBLES----------\n" . $this->colInmueblesAsString() . "\n" .
-        "Administrador: " . $this->getAdministrador();
+        "----------ADMINISTRADOR----------\n" . $this->getAdministrador();
     }
 
     public function colInmueblesAsString()

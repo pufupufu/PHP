@@ -1,5 +1,5 @@
 <?php
-class Inquilino
+class Persona
 {
     private $tipoDoc;
     private $numeroDoc;
