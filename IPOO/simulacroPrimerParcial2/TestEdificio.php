@@ -24,17 +24,17 @@ $inmueblesDisponibles = $edificio->darInmueblesDisponiblesParaAlquiler("local co
 mostrarColeccion($inmueblesDisponibles);
 
 //INCISO 5
-echo "EJECUTANDO INCISO 5...\n";
+echo "EJECUTANDO INCISO 5...";
 $persona3 = new Persona("DNI", 28765436, "Mariela", "Suarez", 25543562);
-echo ($edificio->registrarAlquilerInmueble($inmueble5, $persona3)) ? "OK!" : "ERROR" . "\n\n";
+echo ($edificio->registrarAlquilerInmueble($inmueble5, $persona3)) ? "OK!\n\n" : "ERROR\n\n";
 
 //INCISO 6
-echo "EJECUTANDO INCISO 6...\n";
-echo ($edificio->registrarAlquilerInmueble($inmueble4, $persona3)) ? "OK!" : "ERROR" . "\n\n";
+echo "EJECUTANDO INCISO 6...";
+echo ($edificio->registrarAlquilerInmueble($inmueble4, $persona3)) ? "OK!\n\n" : "ERROR\n\n";
 
 //INCISO 7
 echo "EJECUTANDO INCISO 7...\n";
-echo $edificio->calcularCostoEdificio() . "\n\n";
+echo "$" . $edificio->calcularCostoEdificio() . "\n\n";
 
 //INCISO 8
 echo "EJECUTANDO INCISO 8...\n";

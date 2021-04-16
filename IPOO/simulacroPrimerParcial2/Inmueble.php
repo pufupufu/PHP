@@ -72,6 +72,7 @@ class Inmueble
 
     public function __toString()
     {
+        $disponible = "Disponible";
         return "Codigo: " . $this->getCodigoReferencia() . "\n" .
         "Piso " . $this->getNumeroPiso() . "\n" .
         "Costo mensual: $" . $this->getCostoMensual() . "\n" .
@@ -80,8 +81,11 @@ class Inmueble
 
     public function alquilarInmueble($objPersona)
     {
+        $exito = false;
         if ($this->getInquilino() == null) {
             $this->setInquilino($objPersona);
+            $exito = true;
         }
+        return $exito;
     }
 }

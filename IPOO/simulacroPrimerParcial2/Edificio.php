@@ -66,16 +66,14 @@ class Edificio
 
     public function darInmueblesDisponiblesParaAlquiler($tipoInmueble, $costo)
     {
+        $pos = -1;
         $colInmueblesDisponibles = [];
         $colInmuebles = $this->getColInmuebles();
-        $i = 0;
-        $inmueble = $colInmuebles[$i];
-        while ($inmueble->getCostoMensual() <= $costo && $i < count($colInmuebles)) {
-            if ($inmueble->getInquilino() == null && $inmueble->getTipoInmueble() == $tipoInmueble) {
+        for ($i = 0; $i < count($colInmuebles); $i++) {
+            $inmueble = $colInmuebles[$i];
+            if ($inmueble->getInquilino() == null && $inmueble->getTipoInmueble() == $tipoInmueble && $inmueble->getCostoMensual() <= $costo) {
                 $colInmueblesDisponibles[count($colInmueblesDisponibles)] = $inmueble;
             }
-            $i++;
-            $inmueble = $colInmuebles[$i];
         }
         return $colInmueblesDisponibles;
     }
@@ -83,12 +81,12 @@ class Edificio
     public function registrarAlquilerInmueble($objInmueble, $objPersona)
     {
         $exito = false;
-        if ($this->verificarPisos($objInmueble->getNumeroPiso() - 1)) {
+        if ($this->verificarPisos($objInmueble)) {
             $colInmuebles = $this->getColInmuebles();
             $i = 0;
             while ($i < count($colInmuebles)) {
-                if ($colInmuebles[$i]->getCodigoReferencia() == $objInmueble->getCodigoReferencia() && $colInmuebles[$i]->getInquilino() == null) {
-                    $colInmuebles[$i]->setInquilino($objPersona);
+                if ($colInmuebles[$i]->getCodigoReferencia() == $objInmueble->getCodigoReferencia()) {
+                    $colInmuebles[$i]->alquilarInmueble($objPersona);
                     $exito = true;
                     $i = count($colInmuebles);
                 }
@@ -98,19 +96,21 @@ class Edificio
         return $exito;
     }
 
-    public function verificarPisos($nroPiso)
+    public function verificarPisos($objInmueble)
     {
+
         $lleno = true;
-        $coleccion = $this->getColInmuebles();
-        $i = 0;
-        while ($coleccion[$i]->getNumeroPiso() < $nroPiso) {
-            $i++;
-        }
-        while ($coleccion[$i]->getNumeroPiso() == $nroPiso && $lleno) {
-            if ($coleccion[$i]->getInquilino() == null) {
-                $lleno = false;
+        $coleccion = $this->darInmueblesDisponiblesParaAlquiler($objInmueble->getTipoInmueble(), $objInmueble->getCostoMensual());
+        if (count($coleccion) != 0) {
+            $i = 0;
+            while ($coleccion[$i]->getNumeroPiso() <= ($objInmueble->getNumeroPiso() - 1) && $lleno) {
+                if ($coleccion[$i]->getInquilino() == null) {
+                    $lleno = false;
+                }
+                $i++;
             }
-            $i++;
+        } else {
+            $lleno = false;
         }
         return $lleno;
     }
