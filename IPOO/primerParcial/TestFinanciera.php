@@ -65,6 +65,6 @@ function main()
 
         //INCISO 12
         echo "EJECUTANDO INCISO 12...\n";
-        echo (is_null($objCuota)) ? "ERROR\n" : $objCuota . "\n";
+        echo $objCuota . "\n";
     }
 }
