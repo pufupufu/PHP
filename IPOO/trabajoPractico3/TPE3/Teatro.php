@@ -70,17 +70,25 @@ class Teatro
         $i = 0;
         $colFunciones = $this->getFunciones();
 
+        //Recorre la coleccion mientras que no se encuentren funciones solapadas y aun queden funciones por verificar
         while (!$seSolapa && $i < count($colFunciones)) {
+            //Si la funcion actual es diferente a la recien ingresada, verifica
             if ($f1->getNombre() != $colFunciones[$i]->getNombre()) {
+                //Tomo el valor de la duracion de la funcion y convierto el string de hora (hh:mm) a minutos
                 $duracion = $colFunciones[$i]->getDuracion();
                 $horaFuncion = $colFunciones[$i]->horaAMinutos();
+                //Obtengo el total de la hora de inicio mas los minutos de duracion
                 $total = $duracion + $horaFuncion;
+                //Si la hora convertida a minutos de la funcion ingresada es mayor al total de la funcion en la posicion actual, o la hora de la funcion en la posicion actual
+                //es mayor a la hora convertida a minutos de la funcion ingresada + su duracion entonces no se solapan y pasa a la siguiente posicion
                 if ($f1->horaAMinutos() > $total || $horaFuncion > ($f1->horaAMinutos() + $f1->getDuracion())) {
                     $seSolapa = false;
                     $i++;
+                    //Sino, cambia el valor de $seSolapa y va a cortar el recorrido
                 } else {
                     $seSolapa = true;
                 }
+                //Si la funcion actual es igual a la ingresada, pasa a la siguiente en la coleccion
             } else {
                 $i++;
             }
