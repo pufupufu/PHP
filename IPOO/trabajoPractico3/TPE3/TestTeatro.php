@@ -275,6 +275,6 @@ function cambiarDuracionFuncion($teatro)
 }
 
 function mostrarCostos($teatro) {
-    $costo = $teatro->darCostos();
-    echo "El costo total del teatro es: $" . $costo . "\n";
+    $costos = $teatro->darCostos();
+    echo $costos . "\n";
 }

@@ -142,12 +142,31 @@ class Teatro
     public function darCostos()
     {
         $arregloFunciones = $this->getFunciones();
+        $costoObra = 0;
+        $costoCine = 0;
+        $costoMusical = 0;
+        $mes = date('m/Y');
         $costoTotal = 0;
         foreach ($arregloFunciones as $objFuncion) {
             $precioFuncion = $objFuncion->getPrecio();
             $precioFuncion += ($precioFuncion * ($objFuncion->getPorcentajeIncremento()) / 100);
-            $costoTotal += $precioFuncion;
+            switch (get_class($objFuncion)) {
+                case "Obra":
+                    $costoObra += $precioFuncion;
+                    break;
+                case "Cine":
+                    $costoCine += $precioFuncion;
+                    break;
+                case "Musical":
+                    $costoMusical += $precioFuncion;
+                    break;
+            }
+            $costoTotal = $costoCine + $costoMusical + $costoObra;
         }
-        return $costoTotal;
+        return "Costos al " . $mes . ":" . 
+        "\n\tObras: $" . $costoObra .
+        "\n\tCine: $" . $costoCine .
+        "\n\tMusicales: $" . $costoMusical . 
+        "\n\tCosto total: $" . $costoTotal;
     }
 }
