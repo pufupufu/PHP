@@ -53,7 +53,8 @@ class Equipo
         $this->cantJugadores = $cantJugadores;
     }
 
-    public function setCategoria($categoria) {
+    public function setCategoria($categoria)
+    {
         $this->categoria = $categoria;
     }
 

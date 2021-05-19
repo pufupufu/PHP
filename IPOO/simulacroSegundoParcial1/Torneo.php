@@ -52,23 +52,21 @@ class Torneo
 
     public function ingresarPartido($objEquipo1, $objEquipo2, $fecha, $tipo)
     {
+        $partido = null;
         $coleccionPartidos = $this->getColeccionPartidos();
-        $exito = false;
         $idPartido = count($coleccionPartidos);
-        if ($objEquipo1->getCategoria() == $objEquipo2->getCategoria() && $objEquipo1->getCantJugadores() == $objEquipo2->getCantJugadores()) {
+        if ($objEquipo1->getCategoria()->getIdCategoria() == $objEquipo2->getCategoria()->getIdCategoria() && $objEquipo1->getCantJugadores() == $objEquipo2->getCantJugadores()) {
             if ($tipo == "futbol") {
                 $partido = new Futbol($idPartido, $objEquipo1, $objEquipo2, $fecha, 0, 0);
                 array_push($coleccionPartidos, $partido);
                 $this->setColeccionPartidos($coleccionPartidos);
-                $exito = true;
             } else if ($tipo == "basket") {
                 $partido = new Basket($idPartido, $objEquipo1, $objEquipo2, $fecha, 0, 0, 0);
                 array_push($coleccionPartidos, $partido);
                 $this->setColeccionPartidos($coleccionPartidos);
-                $exito = true;
             }
         }
-        return $exito;
+        return $partido;
     }
 
     public function darGanadores($deporte)

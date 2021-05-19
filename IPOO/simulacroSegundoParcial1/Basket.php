@@ -31,7 +31,7 @@ class Basket extends Partido
 
     public function coeficientePartido()
     {
-        $coef = parent::coeficienteBase();
+        $coef = parent::coeficientepartido();
         $coef -= 0.75 * $this->getCantidadInfracciones();
         return $coef;
     }

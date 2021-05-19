@@ -89,7 +89,7 @@ class Partido
         "Resultado: " . $this->getCantGolesE1() . " - " . $this->getCantGolesE2();
     }
 
-    public function coeficienteBase()
+    public function coeficientePartido()
     {
         $coef = 0.5;
         $cantG = $this->getCantGolesE1() + $this->getCantGolesE2();
@@ -99,12 +99,13 @@ class Partido
         return $coef;
     }
 
-    public function ganador() {
+    public function ganador()
+    {
         $equipoGanador = null;
         $golesE1 = $this->getCantGolesE1();
         $golesE2 = $this->getCantGolesE2();
 
-        if($golesE1 > $golesE2) {
+        if ($golesE1 > $golesE2) {
             $equipoGanador = $this->getEquipo1();
         } else if ($golesE2 > $golesE1) {
             $equipoGanador = $this->getEquipo2();
