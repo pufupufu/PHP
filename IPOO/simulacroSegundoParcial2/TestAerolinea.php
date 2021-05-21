@@ -19,12 +19,12 @@ $av2 = new Avion(1, 1, 1);
 
 //INCISO 3
 echo "EJECUTANDO INCISO 3...\n";
-$aerolinea = new Aerolinea("Aerolineas Argentinas", [], []);
+$aerolinea = new Aerolinea("Aerolineas Argentinas", []);
 
 //INCISO 4
 echo "EJECUTANDO INCISO 4...\n";
 $p1 = new Pasajero(123456, 21581720, "Argentina", "Juan", "Perez");
-$p2 = new Pasajero(456789, 41591884, "Argentina", "Rocio", "Rodriguez");
+$p2 = new Pasajero(456789, 41591884, "Argentina", "Maria", "Rodriguez");
 
 //INCISO 5
 echo "EJECUTANDO INCISO 5...\n";
