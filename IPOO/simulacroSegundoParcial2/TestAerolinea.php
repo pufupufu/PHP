@@ -33,14 +33,14 @@ $coleccion = [
     "hora de llegada al destino" => "23:50",
     "importe" => 1000,
 ];
-$vuelo1 = $aerolinea->configurarVuelo($d1, $av1, $coleccion);
+$vuelo1 = $aerolinea->configurarVuelo($d1, $av1, $coleccion, $tipoVuelo);
 $coleccionVuelos = $aerolinea->getColeccionVuelos();
 array_push($coleccionVuelos, $vuelo1);
 $aerolinea->setColeccionVuelos($coleccionVuelos);
 
 echo "VUELO 1:\n" . $vuelo1 . "\n";
 
-$vuelo2 = $aerolinea->configurarVuelo($d2, $av2, $coleccion);
+$vuelo2 = $aerolinea->configurarVuelo($d2, $av2, $coleccion, $tipoVuelo);
 $coleccionVuelos = $aerolinea->getColeccionVuelos();
 array_push($coleccionVuelos, $vuelo2);
 $aerolinea->setColeccionVuelos($coleccionVuelos);
