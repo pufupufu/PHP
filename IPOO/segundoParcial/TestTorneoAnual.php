@@ -32,7 +32,7 @@ $objPart6 = new Partido(5, $objE5, $objE6, "10/02/10", 2, 3);
 
 //INCISO 2
 echo "EJECUTANDO INCISO 2...\n";
-$partidosProvinciales = [$objPart1, $objPart1, $objPart1];
+$partidosProvinciales = [$objPart1, $objPart2, $objPart3];
 
 //INCISO 3
 echo "EJECUTANDO INCISO 3...\n";
@@ -82,8 +82,9 @@ echo $ministerioDeporte;
 //Metodo que retorna el arreglo asociativo del ganador como un string
 function asociativoAString($coleccion)
 {
-    print_r($coleccion);
-    $retorno = "GANADOR: " . $coleccion['ganador'] . "\n";
-    $retorno .= "Premio: $" . $coleccion['premio'];
-    return $retorno;
+    $retorno1 = $coleccion['ganador'];
+    $retorno2 = $coleccion['premio'];
+    echo $retorno1 . "\n";
+    echo $retorno2 . "\n";
+    return $retorno1;
 }
