@@ -111,6 +111,7 @@ class Contrato
         $diasVencido = $this->diasContratoVencido();
         if($diasVencido > 10) {
             $this->setEstado("Suspendido");
+            $this->setSeRenueva(false);
         } else if($diasVencido <= 10 && $diasVencido > 0) {
             $this->setEstado("Moroso");
         } else {
@@ -142,7 +143,7 @@ class Contrato
         }
         if($this->getEstado() == "Moroso") {
             $importeFinal += $importeFinal * 0.1 * $diasVencido;
-        } else if($this->getEstado == "Suspendido") {
+        } else if($this->getEstado() == "Suspendido") {
             $importeFinal += $importeFinal * 0.1 * 10;
         }
         return $importeFinal;

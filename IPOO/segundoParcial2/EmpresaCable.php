@@ -55,12 +55,12 @@ class EmpresaCable
         $coleccionPlanes = $this->getColeccionPlanes();
         $i = 0;
         $valido = true;
-        do { //Primero verifico que no tengan la misma cantidad de MG
+        while ($valido && $i < count($coleccionPlanes)) { //Primero verifico que no tengan la misma cantidad de MG
             if ($coleccionPlanes[$i]->getDatosIncluidos() == $objPlan->getDatosIncluidos()) {
                 $valido = false;
             }
             $i++;
-        } while ($valido && $i < count($coleccionPlanes));
+        }
 
         if ($valido) { //Si no se encontró uno igual empieza un recorrido mas minucioso
             $j = 0;
@@ -84,5 +84,39 @@ class EmpresaCable
         }
 
         return $valido;
+    }
+
+    //METODO incorporarContrato
+    public function incorporarContrato($objPlan, $objCliente, $fechaInicio, $fechaVencimiento, $esWeb)
+    {
+        $coleccionContratos = $this->getColeccionContratos();
+        if ($esWeb) {
+            $nuevoContrato = new ContratoWeb($fechaInicio, $fechaVencimiento, $objPlan, "Al dia", 0, true, $objCliente);
+        } else {
+            $nuevoContrato = new ContratoMostrador($fechaInicio, $fechaVencimiento, $objPlan, "Al dia", 0, true, $objCliente);
+        }
+        array_push($coleccionContratos, $nuevoContrato);
+        $this->setColeccionContratos($coleccionContratos);
+    }
+
+    //METODO retornarImporteContratos
+    public function retornarImporteContratos($codigoPlan)
+    {
+        $retorno = 0;
+        $coleccionContratos = $this->getColeccionContratos();
+        foreach ($coleccionContratos as $objContrato) {
+            if ($objContrato->getPlan()->getCodigo() == $codigoPlan) {
+                $retorno += $objContrato->calcularImporte();
+            }
+        }
+        return $retorno;
+    }
+
+    //METODO pagarContrato
+    public function pagarContrato($objContrato)
+    {
+        $objContrato->actualizarEstadoContrato();
+        $costoContrato = $objContrato->calcularImporte();
+        return $costoContrato;
     }
 }
