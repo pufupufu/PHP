@@ -79,11 +79,6 @@ class Torneo
     }
 
     //Metodo obtenerEquipoGanadorTorneo
-    /**
-     * La siguiente funcion tiene problemas a la hora de aceeder a los valores almacenados en la coleccionGanadores, que a su vez almacena arreglos asociativos.
-     * Agradeceria que en la devolucion se explique cual es el error, o en su defecto en una consulta. No entiendo por que razon da el error de "undefined offset"
-     * si estoy pasando una posicion valida en la coleccion, y tampoco reconoce las claves del arreglo asociativo
-     */
     public function obtenerEquipoGanadorTorneo()
     {
         $coleccionGanadores = [];

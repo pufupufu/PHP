@@ -143,7 +143,6 @@ class Persona
             }
         } else {
             $this->setmensajeoperacion($base->getError());
-
         }
         return $arregloPersona;
     }

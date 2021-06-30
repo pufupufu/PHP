@@ -90,6 +90,7 @@ class Estudiante extends Persona
         }
         return $arreglo;
     }
+
     public function insertar()
     {
         $base = new BaseDatos();

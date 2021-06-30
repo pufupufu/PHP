@@ -19,7 +19,7 @@ $objE6 = new Equipo("Racing", "Luis", 11, $objCategoria);
 $objE7 = new Equipo("Independiente", "Diego", 11, $objCategoria);
 $objE8 = new Equipo("Argentinos", "Jorge", 11, $objCategoria);
 $objE9 = new Equipo("Colon", "Matias", 11, $objCategoria);
-$objE10 = new Equipo("Chacarita", "Hernan", 11, $objCategoria);
+$objE10 = new Equipo("Sacachispas", "Jose", 11, $objCategoria);
 $objE11 = new Equipo("Huracan", "Rodrigo", 11, $objCategoria);
 $objE12 = new Equipo("San Lorenzo", "Miguel", 11, $objCategoria);
 
@@ -78,6 +78,8 @@ echo "PREMIO DEL TORNEO:\n" . asociativoAString($premioTorneo2) . "\n";
 //INCISO 9
 echo "EJECUTANDO INCISO 9...\n";
 echo $ministerioDeporte;
+
+echo ($objE1 == $objE10) ? "true" : "false";
 
 //Metodo que retorna el arreglo asociativo del ganador como un string
 function asociativoAString($coleccion)
